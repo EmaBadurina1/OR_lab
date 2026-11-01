@@ -1,0 +1,13 @@
+﻿id,country,country_population,area,iso_code,continent,currency,currency_code,city,postal_code
+5,Bosna i Hercegovina,3140095,51129.0,BA,Europe,Marka,BAM,Sarajevo,71000
+8,Brazil,212812405,8511965.0,BR,South America,Real,BRL,Brazilia,
+9,Egipat,118365995,1001450.0,EG,Africa,Pound,EGP,Kairo,
+2,Hrvatska,3876200,56542.0,HR,Europe,Euro,EUR,Rijeka,51000
+2,Hrvatska,3876200,56542.0,HR,Europe,Euro,EUR,Zagreb,10000
+10,Italija,58915656,301230.0,IT,Europe,Euro,EUR,Rim,
+7,Japan,123366734,377835.0,JP,Asia,Yen,JPY,Tokyo,
+3,Njemačka,83491249,357021.0,DE,Europe,Euro,EUR,Berlin,
+4,Sjedinjene Američke Države,341784857,9629091.0,US,North America,United States Dollar,USD,"Washington, D.C.",
+6,Slovenia,2130986,20273.0,SI,Europe,Euro,EUR,Ljubljana,SI-1000
+11,Španjolska,49355143,504782.0,ES,Europe,Euro,EUR,Barcelona,
+11,Španjolska,49355143,504782.0,ES,Europe,Euro,EUR,Madrid,

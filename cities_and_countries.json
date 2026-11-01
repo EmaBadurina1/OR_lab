@@ -1,0 +1,170 @@
+[
+    {
+        "id": 5,
+        "country": "Bosna i Hercegovina",
+        "country_population": 3140095,
+        "area": 51129.0,
+        "iso_code": "BA",
+        "continent": "Europe",
+        "currency": "Marka",
+        "currency_code": "BAM",
+        "cities": [
+            {
+                "city": "Sarajevo",
+                "postal_code": "71000"
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "country": "Brazil",
+        "country_population": 212812405,
+        "area": 8511965.0,
+        "iso_code": "BR",
+        "continent": "South America",
+        "currency": "Real",
+        "currency_code": "BRL",
+        "cities": [
+            {
+                "city": "Brazilia",
+                "postal_code": null
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "country": "Egipat",
+        "country_population": 118365995,
+        "area": 1001450.0,
+        "iso_code": "EG",
+        "continent": "Africa",
+        "currency": "Pound",
+        "currency_code": "EGP",
+        "cities": [
+            {
+                "city": "Kairo",
+                "postal_code": null
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "country": "Hrvatska",
+        "country_population": 3876200,
+        "area": 56542.0,
+        "iso_code": "HR",
+        "continent": "Europe",
+        "currency": "Euro",
+        "currency_code": "EUR",
+        "cities": [
+            {
+                "city": "Rijeka",
+                "postal_code": "51000"
+            },
+            {
+                "city": "Zagreb",
+                "postal_code": "10000"
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "country": "Italija",
+        "country_population": 58915656,
+        "area": 301230.0,
+        "iso_code": "IT",
+        "continent": "Europe",
+        "currency": "Euro",
+        "currency_code": "EUR",
+        "cities": [
+            {
+                "city": "Rim",
+                "postal_code": null
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "country": "Japan",
+        "country_population": 123366734,
+        "area": 377835.0,
+        "iso_code": "JP",
+        "continent": "Asia",
+        "currency": "Yen",
+        "currency_code": "JPY",
+        "cities": [
+            {
+                "city": "Tokyo",
+                "postal_code": null
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "country": "Njemačka",
+        "country_population": 83491249,
+        "area": 357021.0,
+        "iso_code": "DE",
+        "continent": "Europe",
+        "currency": "Euro",
+        "currency_code": "EUR",
+        "cities": [
+            {
+                "city": "Berlin",
+                "postal_code": null
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "country": "Sjedinjene Američke Države",
+        "country_population": 341784857,
+        "area": 9629091.0,
+        "iso_code": "US",
+        "continent": "North America",
+        "currency": "United States Dollar",
+        "currency_code": "USD",
+        "cities": [
+            {
+                "city": "Washington, D.C.",
+                "postal_code": null
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "country": "Slovenia",
+        "country_population": 2130986,
+        "area": 20273.0,
+        "iso_code": "SI",
+        "continent": "Europe",
+        "currency": "Euro",
+        "currency_code": "EUR",
+        "cities": [
+            {
+                "city": "Ljubljana",
+                "postal_code": "SI-1000"
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "country": "Španjolska",
+        "country_population": 49355143,
+        "area": 504782.0,
+        "iso_code": "ES",
+        "continent": "Europe",
+        "currency": "Euro",
+        "currency_code": "EUR",
+        "cities": [
+            {
+                "city": "Barcelona",
+                "postal_code": null
+            },
+            {
+                "city": "Madrid",
+                "postal_code": null
+            }
+        ]
+    }
+]
