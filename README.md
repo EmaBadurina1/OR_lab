@@ -12,13 +12,13 @@ Ema Badurina
 **Jezik:** Hrvatski
 
 Opis atributa:
-- id - id države (INTEGER) - NOT NULL
-- country - država tj. naziv države (VARCHAR(100)) - NOT NULL
+- id - id države (INTEGER)
+- country - država tj. naziv države (VARCHAR(150))
 - country_population - broj stanovnika države (BIGINT)
 - area - površina države (NUMERIC(15,2))
 - iso_code - univerzalni kod pojedine države (VARCHAR(10))
 - continent - kontinent/naziv kontinenta (VARCHAR(100))
-- currency - valuta/naziv valute (VARCHAR(100)) - NOT NULL
+- currency - valuta/naziv valute (VARCHAR(100))
 - currency_code - univerzalni kod za pojedinu valutu (CHAR(3))
 - city - grad/naziv grada (VARCHAR(100))
 - postal_code - poštanski broj grada (VARCHAR(20))
