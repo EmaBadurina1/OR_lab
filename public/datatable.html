@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Države i gradovi</title>
+        <meta name="description" content="Tablicni prikaz s mogućnošću filtriranja pokdataka">
+        <meta name="author" content="Ema Badurina">
+        <style>
+                body { font-family: 'Times New Roman', Times, serif; margin: 2rem; }
+                form { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+                input, select, button { padding: 6px 10px; font-size: 1rem; }
+                table { border-collapse: collapse; width: 100%; }
+                th, td { border: 1px solid black; padding: 6px 8px; text-align: left; }
+                th { background: #d7caca; }
+                #info { margin: .5rem 0; color: #6d6666; }
+        </style>
+</head>
+<body>
+        <p><a href="index.html">Natrag na početnu stranicu</a></p>
+        <h1>Tablicni prikaz podataka</h1>
+
+        <form id="filterForm">
+                <label for="q">Pretraga:</label>
+                <input type="text" id="q" name="q" placeholder="Upisi tekst...">
+                <label for="attr">Atribut:</label>
+                <select id="attr" name="attr">
+                        <option value="">Svi atributi (wildcard)</option>
+                </select>
+                <button type="submit">Pretraži</button>
+                <button type="button" id="resetBtn">Obriši filtere</button>
+        </form>
+
+        <p>
+                Preuzmi prikazane podatke:
+                <a id="dlCsv" href="#">CSV</a> |
+                <a id="dlJson" href="#">JSON</a>
+        </p>
+
+        <div id="info"></div>
+
+        <table>
+                <thead id="thead"></thead>
+                <tbody id="tbody"></tbody>
+        </table>
+
+        <script>
+                const form = document.getElementById('filterForm');
+                const qInput = document.getElementById('q');
+                const attrSelect = document.getElementById('attr');
+                const thead = document.getElementById('thead');
+                const tbody = document.getElementById('tbody');
+                const info = document.getElementById('info');
+                let columns = [];
+
+                // dohvaćanje stupaca 
+                async function loadColumns() {
+                        const res = await fetch('/api/columns');
+                        columns = await res.json();
+                        for (const col of columns) {
+                                        const opt = document.createElement('option');
+                                        opt.value = col;
+                                        opt.textContent = col;
+                                        attrSelect.appendChild(opt);
+                        }
+                        const tr = document.createElement('tr');
+                        for (const col of columns) {
+                                        const th = document.createElement('th');
+                                        th.textContent = col;
+                                        tr.appendChild(th);
+                        }
+                        thead.appendChild(tr);
+                }
+
+                // dohvaćanje podataka s servera tj. onda iz baze
+                async function loadData() {
+                        const params = new URLSearchParams({ q: qInput.value, attr: attrSelect.value });
+
+                        document.getElementById('dlCsv').href = '/api/data?' + params + '&format=csv&download=1';
+                        document.getElementById('dlJson').href = '/api/data?' + params + '&format=json&download=1';
+
+                        info.textContent = 'Ucitavanje...';
+                        const res = await fetch('/api/data?' + params);
+                        if (!res.ok) { info.textContent = 'Greška u dohvaćanju podataka iz baze.'; return; }
+                        const rows = await res.json();
+
+                        tbody.innerHTML = '';
+                        for (const row of rows) {
+                                        const tr = document.createElement('tr');
+                                        for (const col of columns) {
+                                                const td = document.createElement('td');
+                                                const v = row[col];
+                                                td.textContent = v === null ? '' : (typeof v === 'object' ? JSON.stringify(v) : v);
+                                                tr.appendChild(td);
+                                        }
+                                        tbody.appendChild(tr);
+                        }
+                        info.textContent = `Prikazano zapisa: ${rows.length}`;
+                }
+
+                // dohvati podatke kad se stisne submit tj. pretraži
+                form.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        loadData();
+                });
+
+                // brisanje svih filtera klikom na gumb
+                document.getElementById('resetBtn').addEventListener('click', () => {
+                        qInput.value = '';
+                        attrSelect.value = '';
+                        loadData();
+                });
+
+                // Ako više nema teksta u inputu onda ponovno učitati sve
+                qInput.addEventListener('input', () => {
+                        if (qInput.value === '') loadData();
+                });
+
+                // učitaj sve na početku
+                loadColumns().then(loadData);
+        </script>
+</body>
+</html>
