@@ -1,6 +1,3 @@
-// server.js - pozadinski (back-end) dio aplikacije
-// Cita podatke iz PostgreSQL baze i vraca ih kao JSON ili CSV.
-
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
@@ -11,13 +8,7 @@ const PORT = process.env.PORT || 3000;
 const SCHEMA = process.env.DB_SCHEMA || 'public';
 const TABLE = process.env.DB_TABLE || 'podaci';
 
-// Zastita: naziv tablice ide direktno u SQL, pa dopustamo samo "sigurne" nazive
-const IDENT = /^[a-zA-Z_][a-zA-Z0-9_]*$/;
-if (!IDENT.test(SCHEMA) || !IDENT.test(TABLE)) {
-        throw new Error('Neispravan naziv sheme ili tablice u .env datoteci');
-}
-
-// 1) Spajanje na bazu (pool = skup veza koje se ponovno koriste)
+// Spajanje na bazu (pool = skup veza koje se ponovno koriste)
 const pool = new Pool({
         host: process.env.DB_HOST,
         port: Number(process.env.DB_PORT) || 5432,
@@ -25,8 +16,8 @@ const pool = new Pool({
         password: process.env.DB_PASSWORD,
         database: process.env.DB_NAME,
 });
-// 2) Popis stupaca tablice cita se iz same baze (information_schema).
-//    Koristi se za padajuci izbornik i kao "bijela lista" dopustenih atributa.
+
+// iscitavamo popis stupaca iz baze
 let columns = [];
 async function loadColumns() {
         const r = await pool.query(
@@ -42,10 +33,7 @@ async function loadColumns() {
         }
 }
 
-// 3) Gradnja SQL upita za filtriranje
-//    - prazan q        -> svi zapisi (inicijalni prikaz)
-//    - q bez atributa  -> wildcard: trazi po SVIM stupcima
-//    - q + atribut     -> trazi samo po odabranom stupcu
+// SQL upit na temelju podataka o pretragi
 function buildQuery(q, attr) {
         let sql = `SELECT * FROM "${SCHEMA}"."${TABLE}"`;
         const params = [];
@@ -63,7 +51,7 @@ function buildQuery(q, attr) {
         return { sql, params };
 }
 
-// Pretvaranje redaka u CSV (s ispravnim navodnicima)
+// Funkcija za pretvaranje redaka u CSV
 function toCsv(rows) {
         const esc = (v) => {
                 if (v === null || v === undefined) return '';
@@ -133,7 +121,7 @@ app.get('/api/data', async (req, res) => {
         }
 });
 
-// Staticke datoteke: index.html, datatable.html, schema.json, data/*.csv, data/*.json
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Pokretanje
